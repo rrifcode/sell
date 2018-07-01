@@ -1,0 +1,25 @@
+spring:
+# 数据库配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.163/sell?characterEncoding=urf-8&useSSL=false
+  jpa:
+    show-sql: true
+server:
+# 程序入口
+  servlet:
+    context-path: /sell
+#配置日志
+logging:
+  pattern:
+#  %d表示日期，%msg表示信息 %n表示换行
+    console: "%d - %msg%n"
+#  表示把日志输出到一个路径里，完整
+  path: /var/log/tomcat/
+#  指定输出到文件
+  file: /var/log/tomcat/sell.log
+  level: debug
+#  表示指定类的日志级别为debug
+#    com.bai.sell.SellApplication: debug
