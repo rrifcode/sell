@@ -1,4 +1,4 @@
-package com.bai.sell.test;
+package com.bai.sell.test.categorytest;
 
 import com.bai.sell.entity.ProductCategory;
 import com.bai.sell.service.impl.ProductCategoryServiceImpl;
