@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml文件配置log日志-->
+<configuration>
+
+    <!--配置项-->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--小配置项-->
+            <pattern>
+                %d - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+
+    <!--添加配置项，设置滚动日志输出，每天输出一个文件-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--添加过滤信息，根据级别过滤，由于error比info级别高，就算过滤也会出现error信息-->
+        <filter claass="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <misMatch>ACCEPT</misMatch>
+        </filter>
+       <encoder>
+           <pattern>
+               %msg%n
+           </pattern>
+       </encoder>
+        <!--设置滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志输出路径-->
+            <fileNamePattern>
+                /var/log/tomcat/sell/info.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--添加配置项，专门输出error日志-->
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--如果不添加，会出现同时输出info和error，error文件里有info，info文件里有error-->
+        <!--添加过滤信息，只有error可以输出到这个文件里,根据范围过滤-->
+        <filter claass="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--设置滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志输出路径-->
+            <fileNamePattern>
+                /var/log/tomcat/sell/error.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+
+
+<!--######################################################################-->
+    <!--配置日志应用到哪里，控制台的输出,-->
+    <root level="info">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="fileErrorLog"/>
+    </root>
+</configuration>
