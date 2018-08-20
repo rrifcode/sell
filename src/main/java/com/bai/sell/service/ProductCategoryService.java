@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * service
+ * @author Administrator
  */
 public interface ProductCategoryService {
     /**

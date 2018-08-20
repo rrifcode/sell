@@ -11,6 +11,7 @@ import javax.persistence.Id;
 /**
  * 类目表
  *
+ * @author Administrator
  */
 @Entity
 @DynamicUpdate  /** 此注解可使时间的动态的更新 */
@@ -19,7 +20,7 @@ public class ProductCategory {
 
     /** 类目id */
     @Id
-    @GeneratedValue
+    @GeneratedValue /** 自增 */
     private Integer categoryId;
 
     /** 类目名 */

@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Dao层接口
+ * @author Administrator
  */
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer> {
 
