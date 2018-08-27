@@ -35,14 +35,14 @@ public class ProductInfoRepositoryTest {
     public void addTest(){
 
         ProductInfo productInfo = new ProductInfo();
-        productInfo.setProductId("A001");
-        productInfo.setProductName("麻辣烫");
-        productInfo.setProductPrice(new BigDecimal(18.2));
+        productInfo.setProductId("A002");
+        productInfo.setProductName("热干面");
+        productInfo.setProductPrice(new BigDecimal(21));
         productInfo.setProductIcon(null);
-        productInfo.setProductDescription("又麻又辣");
-        productInfo.setProductStock(5);
+        productInfo.setProductDescription("又热又干");
+        productInfo.setProductStock(10);
         productInfo.setProductStatus(0);
-        productInfo.setCategoryType(1);
+        productInfo.setCategoryType(2);
 
         System.out.println(productInfo.toString());
         ProductInfo save = repository.save(productInfo);

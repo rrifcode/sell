@@ -57,7 +57,7 @@ public class ProductInfoServiceImplTest {
         productInfo.setProductName("水煮鱼");
         productInfo.setProductPrice(new BigDecimal(39));
         productInfo.setProductIcon(null);
-        productInfo.setProductDescription("鲜嫩");
+        productInfo.setProductDescription("又鲜又嫩");
         productInfo.setProductStock(3);
         productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
         productInfo.setCategoryType(4);

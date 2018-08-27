@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductInfoVO {
 
-    /** 此注解使用在属性上，把属性名序列化成另一个名称：productId序列化为id */
+    /** 此注解使用在属性上，把属性名序列化成另一个名称：productId序列化为id给前端 */
     @JsonProperty("id")
     private String productId;
 

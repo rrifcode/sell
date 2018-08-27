@@ -35,11 +35,11 @@ public class ProductCategoryRepositoryTest {
     /** 测试增加和修改，都是使用save */
     @Test
     public void addTest(){
-      /*  ProductCategory productCategory = new ProductCategory();
+        ProductCategory productCategory = new ProductCategory();
         productCategory.setCategoryId(2);
         productCategory.setCategoryName("男生喜欢");
         productCategory.setCategoryType(10);
-        repository.save(productCategory);*/
+        repository.save(productCategory);
 
     }
 
@@ -57,7 +57,7 @@ public class ProductCategoryRepositoryTest {
     /** 查找多个条件 */
     @Test
     public void findByCategoryTypeTest(){
-        List<Integer> list = Arrays.asList(2, 3, 4);
+        List<Integer> list = Arrays.asList(1, 2, 3);
 
         List<ProductCategory> byCategoryTypeIn = repository.findByCategoryTypeIn(list);
         System.out.println(byCategoryTypeIn.toString());

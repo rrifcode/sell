@@ -1,6 +1,7 @@
 package com.bai.sell.service;
 
 
+import com.bai.sell.dto.CartDTO;
 import com.bai.sell.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,10 @@ public interface ProductInfoService {
      * @return
      */
     ProductInfo save(ProductInfo productInfo);
+
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    void decreaseStock(List<CartDTO> cartDTOList);
 
 
 }
