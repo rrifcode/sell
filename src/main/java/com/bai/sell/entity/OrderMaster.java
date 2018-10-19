@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单主表
+ */
 @Entity
 @Data
 @DynamicUpdate
