@@ -2,6 +2,9 @@ package com.bai.sell.exception;
 
 import com.bai.sell.enums.ResultEnum;
 
+/**
+ * 全局异常
+ */
 public class SellException extends RuntimeException {
 
     private  Integer code;

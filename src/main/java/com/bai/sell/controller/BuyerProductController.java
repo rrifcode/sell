@@ -12,12 +12,10 @@ import com.bai.sell.vo.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,15 +41,15 @@ public class BuyerProductController {
         List<ProductInfo> upAll = productInfoService.findUpAll();
 
         //2. 查询类目 (一次性查找)
-//        List<Integer> categoryTypeList = new ArrayList<>();
+        //List<Integer> categoryTypeList = new ArrayList<>();
 
-        //foreach遍历获取categoryType
+        // 传统方法:foreach遍历获取categoryType
         /*for (ProductInfo productInfo: upAll) {
             categoryTypeList.add(productInfo.getCategoryType());
 
         }*/
 
-        // Lambda表达式获取categoryType
+        // 精简方法:Lambda表达式获取categoryType
         List<Integer> categoryTypeList = upAll.stream()
                 .map(e -> e.getCategoryType())
                 .collect(Collectors.toList());
@@ -59,7 +57,6 @@ public class BuyerProductController {
         List<ProductCategory> productCategories = categoryService.findByCategoryTypeIn(categoryTypeList);
 
         //3. 数据拼装
-
         //类目层
         List<ProductVO> productVOList = new ArrayList<>();
         for (ProductCategory productCategory : productCategories) {
@@ -72,7 +69,7 @@ public class BuyerProductController {
             for (ProductInfo productInfo : upAll) {
                 if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){
                     ProductInfoVO productInfoVO = new ProductInfoVO();
-                    //把productInfo的属性copy到productInfoVO里，不用再一个一个set了
+                    //把productInfo的属性的值copy到productInfoVO里，不用再一个一个set了
                     BeanUtils.copyProperties(productInfo, productInfoVO);
                     //添加到list
                     productInfoVOList.add(productInfoVO);

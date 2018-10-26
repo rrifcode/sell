@@ -42,8 +42,16 @@ public interface ProductInfoService {
      */
     ProductInfo save(ProductInfo productInfo);
 
+    /**
+     * 增加库存
+     * @param cartDTOList
+     */
     void increaseStock(List<CartDTO> cartDTOList);
 
+    /**
+     * 减库存
+     * @param cartDTOList
+     */
     void decreaseStock(List<CartDTO> cartDTOList);
 
 

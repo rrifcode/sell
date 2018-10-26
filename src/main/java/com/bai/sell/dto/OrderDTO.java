@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 数据传输对象
- *
+ * 订单
  */
 @Data
 public class OrderDTO {

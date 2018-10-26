@@ -5,6 +5,7 @@ import lombok.Getter;
 
 /**
  * 订单状态
+ * 枚举类不能使用@Data注解,需要手动生成构造方法
  * @author Administrator
  */
 @Getter

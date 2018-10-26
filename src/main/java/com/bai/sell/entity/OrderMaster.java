@@ -13,10 +13,11 @@ import java.util.Date;
 
 /**
  * 订单主表
+ * @author Administrator
  */
 @Entity
 @Data
-@DynamicUpdate
+@DynamicUpdate   //自动更新
 public class OrderMaster {
 
     /** 订单id */

@@ -33,15 +33,18 @@ public class OrderDetailRepositoryTest {
         orderDetail.setProductQuantity(12);
         orderDetail.setProductIcon("http://xxxx.jpg");
 
-        repository.save(orderDetail);
+        OrderDetail result = repository.save(orderDetail);
 
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void findByOrderId() {
 
         List<OrderDetail> orderDetailList = repository.findByOrderId("A00001");
-        Assert.assertNotNull(orderDetailList);
+        //Assert.assertNotNull(orderDetailList);
+        //查询的结果的长度不等于0
+        Assert.assertNotEquals(0, orderDetailList.size());
 
 
     }

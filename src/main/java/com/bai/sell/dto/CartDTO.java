@@ -2,6 +2,9 @@ package com.bai.sell.dto;
 
 import lombok.Data;
 
+/**
+ * 购物车DTO
+ */
 @Data
 public class CartDTO {
     /** 商品id */

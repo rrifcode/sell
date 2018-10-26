@@ -1,6 +1,7 @@
 package com.bai.sell.repository;
 
 import com.bai.sell.entity.OrderMaster;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,19 @@ public class OrderMasterRepositoryTest {
         orderMaster.setOrderBuyerPhone("12345678902");
         orderMaster.setOrderBuyerAddress("深圳");
 
-        repository.save(orderMaster);
+        OrderMaster result = repository.save(orderMaster);
+        Assert.assertTrue(result != null);
+
     }
 
 
     @Test
     public void findByOrderBuyerOpenid() {
 
-        PageRequest request = new PageRequest(1, 3);
+        PageRequest request = new PageRequest(0, 3);
         Page<OrderMaster> result = repository.findByOrderBuyerOpenid(OPENID, request);
-        System.out.println(result.getTotalElements());
+        //System.out.println(result.getTotalElements());
 
+        Assert.assertNotEquals(0,result.getTotalElements());
     }
 }
