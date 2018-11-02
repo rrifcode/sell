@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
+        //生成orderId
         String orderId = KeyUtil.genUniqueKey();
 
         //BigInteger.ZERO等同于0
@@ -59,13 +60,20 @@ public class OrderServiceImpl implements OrderService {
 
         //1. 查询商品(数量,价格)
         for (OrderDetail orderDetail : orderDTO.getOrderDetailList()) {
+            //NullPointerException
             ProductInfo productInfo = productInfoService.findOne(orderDetail.getProductId());
             if(orderDetail==null){
                 throw  new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //2. 计算订单总价
-            orderAmount = productInfo.getProductPrice().multiply(new BigDecimal(orderDetail
-                    .getProductQuantity())).add(orderAmount);
+            BigDecimal productPrice = productInfo.getProductPrice();
+            Integer productQuantity = orderDetail.getProductQuantity();
+            BigDecimal multiply = productPrice.multiply(new BigDecimal(productQuantity));
+            orderAmount = multiply.add(orderAmount);
+
+
+            /*orderAmount = productInfo.getProductPrice().multiply(new BigDecimal(orderDetail
+                    .getProductQuantity())).add(orderAmount);*/
 
             //订单详情入库 前端只会传商品id和商品的数量  搞清楚逻辑
             orderDetail.setDetailId(KeyUtil.genUniqueKey());
@@ -79,8 +87,8 @@ public class OrderServiceImpl implements OrderService {
         //一张主订单表对应多个订单详表
         OrderMaster orderMaster = new OrderMaster();
         //属性拷贝会把原有的属性值覆盖, 所以要先拷贝,再赋值
+        orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         //属性拷贝后, 初始化的两个值被null覆盖, 需要重新赋值
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
@@ -134,7 +142,6 @@ public class OrderServiceImpl implements OrderService {
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
 
         Page<OrderMaster> orderMasters = orderMasterRepository.findByOrderBuyerOpenid(buyerOpenid, pageable);
-        //TODO
         List<OrderMaster> orderMasterList = orderMasters.getContent();
         List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterList);
         //3个参数

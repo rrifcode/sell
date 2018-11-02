@@ -1,0 +1,23 @@
+package com.bai.sell.utils.serializer;
+
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
+import java.io.IOException;
+import java.util.Date;
+/**
+ * Data类型转成Long型
+ * Created by Bai
+ * 2018-11-2 14:26
+ */
+public class Date2LongSerializer extends JsonSerializer<Date>{
+    @Override
+    public void serialize(Date date,
+                          JsonGenerator jsonGenerator,
+                          SerializerProvider serializerProvider) throws IOException{
+
+        jsonGenerator.writeNumber(date.getTime() / 1000);
+    }
+}

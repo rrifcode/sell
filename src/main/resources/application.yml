@@ -7,5 +7,11 @@ spring:
     password: 123456
   jpa:
     show-sql: true
+  #对应@JsonInclude(JsonInclude.Include.NON_NULL)的全局配置
+  #表示全局字段返回值如果是null,就不返回该字段
+  jackson:
+    default-property-inclusion: non_null
 server:
   context-path: /sell
+
+
